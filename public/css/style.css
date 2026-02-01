@@ -1,0 +1,667 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --cor-success: #2e7d32;
+    --cor-success-hover: #1b5e20;
+    --cor-info: #000000;
+    --cor-info-hover: #000000;
+    --cor-danger: #d32f2f;
+    --cor-danger-hover: #b71c1c;
+    --cor-40: #ffffff;
+    --cor-50: #f1f1f1;
+    --cor-100: #d6d6d6;
+    --cor-200: #bdbdbd;
+    --cor-300: #a3a3a3;
+    --cor-400: #8a8a8a;
+    --cor-500: #707070;
+    --cor-600: #5a5a5a;
+    --cor-700: #3c3c3c;
+    --cor-800: #2a2a2a;
+    --cor-900: #181818;
+    --cor-950: #0f0f0f;
+
+    /* NOVAS cores amarelo-laranja */
+    --cor-primary: #f9a825;
+    /* Amarelo-laranja principal */
+    --cor-primary-hover: #f57f17;
+    /* Laranja queimado no hover */
+    --cor-secondary: #ef6c00;
+    /* Laranja médio */
+    --cor-secondary-hover: #e65100;
+    /* Laranja escuro no hover */
+}
+
+body {
+    background-color: var(--cor-950);
+    height: 100vh;
+}
+
+body,
+ul,
+li {
+    font-family: 'Inter', sans-serif;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    color: var(--cor-50);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 44px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: var(--cor-50);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 27px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: var(--cor-50);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: var(--cor-50);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    margin-bottom: 10px;
+}
+
+h5 {
+    color: var(--cor-50);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+h6 {
+    color: var(--cor-50);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: var(--cor-50);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 1.5em;
+}
+
+.interface {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ESTILO CABEÇALHO */
+/* header {
+    padding: 40px 4%;
+}
+
+header > .interface {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    color: var(--cor-50);
+}
+
+header nav ul li {
+    display: inline-block;
+    padding: 0 40px;
+}
+
+header > .interface > .logo {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    transform: rotate(-20deg);
+} */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
+
+.dashboard nav {
+    background: var(--cor-900);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashboard nav a {
+    color: var(--cor-50);
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.dashboard nav a:hover {
+    background: var(--cor-700);
+}
+
+.main-content {
+    padding: 40px;
+    background: var(--cor-950);
+    overflow-y: auto;
+    width: 100%;
+}
+
+.content-box {
+    background: var(--cor-900);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 30px 0;
+}
+
+.welcome-box {
+    background: var(--cor-900);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+}
+
+.status {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 200px;
+    background: var(--cor-800);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card h3 {
+    color: var(--cor-100);
+}
+
+.card span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--cor-50);
+}
+
+header {
+    background: var(--cor-900);
+    padding: 20px 4%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header .interface {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo a {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--cor-50);
+    transition: transform 0.3s ease;
+}
+
+header .logo a:hover {
+    transform: rotate(-5deg);
+}
+
+header .menu ul {
+    display: flex;
+    gap: 25px;
+}
+
+header .menu ul li a {
+    color: var(--cor-50);
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+header .menu ul li a:hover {
+    background: var(--cor-700);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--cor-800);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 10px 0;
+    right: 0;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--cor-50);
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--cor-700);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+footer {
+    background: var(--cor-900);
+    padding: 30px 4%;
+    margin-top: 40px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer h4 {
+    color: var(--cor-50);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.formulario {
+    background: var(--cor-900);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.formulario label {
+    color: var(--cor-50);
+    font-weight: 500;
+    display: block;
+    margin-top: 15px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="password"],
+.formulario textarea,
+.formulario select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    background: var(--cor-800);
+    color: var(--cor-50);
+    font-size: 1rem;
+}
+
+.formulario textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.formulario input[type="submit"] {
+    background: var(--cor-100);
+    color: var(--cor-950);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.formulario input[type="submit"]:hover {
+    background: var(--cor-50);
+    color: var(--cor-950);
+}
+
+.formulario select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    background: var(--cor-800);
+    color: var(--cor-50);
+    font-size: 1rem;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23d6d6d6" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 99%;
+    background-position-y: center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.formulario select option {
+    background: var(--cor-800);
+    color: var(--cor-50);
+}
+
+#resposta {
+    display: block;
+    margin-top: 15px;
+    color: var(--cor-50);
+}
+
+
+#resposta {
+    display: block;
+    margin-top: 15px;
+    color: var(--cor-50);
+}
+
+.post-container {
+    background: var(--cor-900);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+.post-container h2 {
+    color: var(--cor-50);
+    margin-bottom: 8px;
+}
+
+.post-container h4 {
+    color: var(--cor-100);
+    margin-bottom: 12px;
+}
+
+.post-container p {
+    color: var(--cor-50);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.post-container small {
+    color: var(--cor-600);
+}
+
+.post-container a {
+    text-decoration: none;
+}
+
+.tabela-container {
+    background: var(--cor-900);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 40px auto;
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela th,
+.tabela td {
+    padding: 15px;
+    text-align: left;
+    color: var(--cor-50);
+    border-bottom: 1px solid var(--cor-800);
+}
+
+.tabela th {
+    background: var(--cor-800);
+    font-weight: 600;
+}
+
+.tabela tr:hover {
+    background: var(--cor-800);
+}
+
+.tabela a {
+    color: var(--cor-100);
+    font-weight: 500;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.tabela a:hover {
+    color: var(--cor-50);
+    text-decoration: underline;
+}
+
+.btn-cadastrar {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.btn-voltar {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.acoes form {
+    display: inline;
+}
+
+.botao {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.botao.cadastrar {
+    background: var(--cor-primary);
+    color: var(--cor-40);
+}
+
+.botao.cadastrar:hover {
+    background: var(--cor-primary-hover);
+}
+
+.botao.voltar {
+    background: var(--cor-secondary);
+    color: var(--cor-40);
+}
+
+.botao.voltar:hover {
+    background: var(--cor-secondary-hover);
+    text-decoration: none;
+}
+
+.botao.ver {
+    background: var(--cor-800);
+    color: var(--cor-50);
+}
+
+.botao.ver:hover {
+    background: var(--cor-100);
+    color: var(--cor-950);
+    text-decoration: none;
+}
+
+.botao.editar {
+    background: var(--cor-success);
+    color: var(--cor-40);
+}
+
+.botao.editar:hover {
+    background: var(--cor-success-hover);
+    text-decoration: none;
+}
+
+.botao.deletar {
+    background: var(--cor-danger);
+    color: var(--cor-40);
+    border: none;
+    text-decoration: none;
+}
+
+.botao.deletar:hover {
+    background: var(--cor-danger-hover);
+}
+
+.botao:hover {
+    transform: scale(1.03);
+}
+
+.comentarios {
+    background-color: var(--cor-900);
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+.comentarios h2 {
+    font-size: 24px;
+    color: var(--cor-50);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.comentarios p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: var(--cor-400);
+}
+
+.comentarios .usuario-info {
+    font-size: 13px;
+    color: var(--cor-400);
+    margin-bottom: 20px;
+}
+
+.comentarios .usuario-info a {
+    color: var(--cor-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.comentarios .usuario-info a:hover {
+    color: var(--cor-secondary-hover);
+    text-decoration: underline;
+}
+
+.comentarios .disclaimer {
+    font-size: 12px;
+    color: var(--cor-400);
+    margin-bottom: 25px;
+}
+
+.comentarios .disclaimer a {
+    color: var(--cor-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.comentarios .disclaimer a:hover {
+    color: var(--cor-secondary-hover);
+    text-decoration: underline;
+}
+
+.comentarios .textarea-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.comentarios textarea {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border: 1px solid var(--cor-200);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--cor-50);
+    min-height: 100px;
+    resize: vertical;
+    box-sizing: border-box;
+    background-color: var(--cor-800);
+}
+
+.comentarios textarea:focus {
+    border-color: var(--cor-primary);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(249, 168, 37, 0.25);
+}
+
+.comentarios .qtd-caracteres {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 12px;
+    color: var(--cor-400);
+}
+
+.comentarios .submit-button {
+    background-color: var(--cor-primary);
+    color: var(--cor-info);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.comentarios .submit-button:hover {
+    background-color: var(--cor-primary-hover);
+}

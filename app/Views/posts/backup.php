@@ -1,0 +1,167 @@
+<div id="container-nav" class="fadeIn">
+
+    <!-- <li class="mContent main-menu_txt">
+        <a href="<?= URL ?>" class="ajax-link">
+            <div class="menu_ico">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-label="arrow">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"></path>
+                </svg>
+            </div>Ir para o início
+        </a>
+    </li> -->
+
+
+    <div id="content">
+        <div id="news">
+            <div class="ads_970x250"><img src="<?= URL . '/public/images/' ?>ads1.jpg" width="970" height="250" alt="" /></div>
+
+            <div class="news-section">
+
+                <div class="section">
+
+                    <div class="title-section sticky-news">NOTÍCIAS</div>
+
+                    <div class="news-base">
+
+                        <?php
+
+                        if (!empty($dados->posts)):
+
+                            $posts = $dados->posts;
+
+                            foreach ($posts as $key => $post):
+
+                                // Se for o primeiro post ($key == 0), usa o layout de destaque
+                                if ($key == 0):
+                        ?>
+                                    <div class="news-feature" style="background-image: url('<?= URL . '/public/uploads/imagens/' . $post->imagem_post ?>');">
+                                        <div class="news-bg">
+                                            <div class="news-text">
+                                                <span><a href="<?= htmlspecialchars(URL . '/post/' . $post->slug) ?>"><?= htmlspecialchars($post->titulo) ?></a></span>
+                                                <div class="description"><?= htmlspecialchars($post->subtitulo) ?></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php
+                                // Para os demais posts, usa o layout de lista
+                                else:
+                                ?>
+                                    <div class="news">
+                                        <img src="<?= URL . '/public/uploads/imagens/' . $post->imagem_post ?>" alt="<?= htmlspecialchars($post->titulo) ?>">
+                                        <div class="text">
+                                            <h3><a href="<?= htmlspecialchars(URL . '/post/' . $post->slug) ?>"><?= htmlspecialchars($post->titulo) ?></a></h3>
+                                            <p><?= htmlspecialchars($post->subtitulo) ?></p>
+                                            <div class="author_box">
+                                                <div class="author">Robinson Muzykant</div>
+                                                <div class="date">22 de Março de 2024</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php
+                                endif;
+                            endforeach;
+                        endif;
+                        ?>
+
+                        <button class="form-button news-button">VEJA MAIS</button>
+
+                    </div>
+
+
+
+                    <div class="side">
+                        <div class="ads_300x600"><img src="<?= URL . '/public/images/' ?>ads_coluna.jpg" width="300" height="600" alt="" /></div>
+                        <div class="card_event">
+                            <h1>EVENTOS</h1>
+                            <img src="<?= URL . '/public/images/' ?>event_03.jpg">
+                        </div>
+                        <div class="card_music">
+                            <h1>MÚSICA</h1>
+                            <img src="<?= URL . '/public/images/' ?>music_02.jpg">
+                            <div class="card-music-bg">
+                                <div class="card-music-text">
+                                    <span>Blessings Calvin Harris, Clementine Douglas</span>
+                                    <div class="description">Calvin Harris lançou um novo single, "Blessings", com a vocalista britânica Clementine Douglas.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="events">
+                <div class="ads_970x250"><img src="<?= URL . '/public/images/' ?>ads2.jpg" width="970" height="250" alt="" /></div>
+                <div class="horizontal-section">
+                    <div class="title-section">EVENTOS</div>
+                    <div class="cards" style="margin-bottom: 110px;">
+                        <div class="card_event">
+                            <img src="<?= URL . '/public/images/' ?>event_01.jpg">
+                        </div>
+                        <div class="card_event">
+                            <img src="<?= URL . '/public/images/' ?>event_02.jpg">
+                        </div>
+                        <div class="card_event">
+                            <img src="<?= URL . '/public/images/' ?>event_03.jpg">
+                        </div>
+                        <div class="card_event">
+                            <img src="<?= URL . '/public/images/' ?>event_04.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="music">
+                <div class="ads_970x250"><img src="<?= URL . '/public/images/' ?>ads3.jpg" width="970" height="250" alt="" /></div>
+                <div class="horizontal-section">
+                    <div class="title-section">MÚSICA</div>
+                    <div class="cards">
+                        <div class="card_music">
+                            <img src="<?= URL . '/public/images/' ?>music_01.jpg">
+                            <div class="card-music-bg">
+                                <div class="card-music-text">
+                                    <span>Too Big For B-Side Mau P</span>
+                                    <div class="description">Mau P se junta à família Diynamic com um aquecido two-tracker Too Big For B-Side.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_music">
+                            <img src="<?= URL . '/public/images/' ?>music_02.jpg">
+                            <div class="card-music-bg">
+                                <div class="card-music-text">
+                                    <span>Blessings Calvin Harris, Clementine Douglas</span>
+                                    <div class="description">Calvin Harris lançou um novo single, "Blessings", com a vocalista britânica Clementine Douglas.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_music">
+                            <img src="<?= URL . '/public/images/' ?>music_03.jpg">
+                            <div class="card-music-bg">
+                                <div class="card-music-text">
+                                    <span>Can't Decide (Extended) Locky, Max Dean, Luke Dean</span>
+                                    <div class="description">Antes de uma apresentação muito aguardada no terraço do Club Space, Mau P lançou dois novos singles que os fãs estavam pedindo.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_music">
+                            <img src="<?= URL . '/public/images/' ?>music_04.jpg">
+                            <div class="card-music-bg">
+                                <div class="card-music-text">
+                                    <span>Crazy For It Boys Noize, &ME, Rampa, Adam Port, Keinemusik, Vinson</span>
+                                    <div class="description">Um novo lançamento pela Keinemusik está chegando, e se você quiser, pode ser uma pergunta um tanto retórica.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="form-button events-button">VEJA MAIS</button>
+            <div class="ads_970x250"><img src="<?= URL . '/public/images/' ?>ads4.jpg" width="970" height="250" alt="" /></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Player -->
+<div id="mini_player"></div>

@@ -1,0 +1,3929 @@
+@charset "utf-8";
+
+:root {
+  --color-black: #000000;
+  --color-black-midi: #010101;
+  --color-black-low: #000000d9;
+  --color-dark-gray: #1c1b1b;
+  --color-gray: #747474;
+  --color-light-gray: #b3b3b3;
+  --color-light-gray-hard: #474747;
+  --color-red: #f00;
+  --color-white: #ffffff;
+  --font-primary: 'Spartan', system-ui, sans-serif;
+  --transition-fast: 0.2s;
+  --transition-medium: 0.4s;
+  --transition-slow: 0.5s;
+  --z-index-base: 1;
+  --z-index-header: 400;
+  --z-index-loader: 9999;
+  --z-index-menu: 4;
+  --z-index-overlay: 3;
+  --z-index-player: 500;
+}
+
+html,
+body {
+  background-color: var(--color-black);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+body {
+  display: flex;
+  flex-flow: row;
+  /* height: 100%; */
+  justify-content: center;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+  width: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: var(--color-white);
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+p {
+  color: var(--color-white);
+  font-size: 0.875rem;
+  margin-bottom: 1.625rem;
+}
+
+h1 {
+  letter-spacing: 0.03em;
+  margin-top: 0;
+}
+
+h2 {
+  letter-spacing: 0.02em;
+  line-height: 1.4em;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  line-height: 0.1em;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  line-height: 1.2em;
+  margin-bottom: 0.2em;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-weight: 100;
+  letter-spacing: 0.03em;
+  line-height: 1.15em;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-weight: 100;
+  letter-spacing: 0.01em;
+  line-height: 2.9em;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Spartan';
+  font-style: normal;
+  font-weight: 200 900;
+  src: url(https://fonts.gstatic.com/s/spartan/v18/l7gfbjR61M69yt8Z2QKtlA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+    U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+2074, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Spartan';
+  font-style: normal;
+  font-weight: 400 900;
+  src: url(https://fonts.gstatic.com/s/spartan/v18/l7gfbjR61M69yt8Z2QytlBfK.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20CF, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+#news,
+#events,
+#music {
+  scroll-margin-top: 6.375rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.6875rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-dark-gray);
+  border-radius: 0.5625rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7b7b7b;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #a1a1a1;
+}
+
+::-webkit-scrollbar-button {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 0%;
+  display: block;
+  height: 6.875rem;
+}
+
+::-webkit-scrollbar-button:vertical:start:increment {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Chevron-up.svg');
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+::-webkit-scrollbar-button:vertical:end:decrement {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg');
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+}
+
+#cover-site {
+  background-position: center;
+  background-size: cover;
+  clip-path: circle(60% at 45% 50%);
+  height: 100%;
+  left: -8.75rem;
+  max-width: 103.125rem;
+  position: fixed;
+  transition: background-image var(--transition-slow), transform var(--transition-slow), opacity var(--transition-slow);
+  width: 100%;
+}
+
+.bg-mask {
+  background: radial-gradient(rgba(0, 0, 0, .2) 20%, var(--color-black) 100%);
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+}
+
+div#row {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  z-index: var(--z-index-overlay);
+}
+
+.logo {
+  background: url("/ritualfm/public/images/logo.svg") no-repeat;
+  float: left;
+  height: 2.9375rem;
+  position: relative;
+  width: 13.6875rem;
+}
+
+.ads_300x250 {
+  float: right;
+  height: 15.625rem;
+  position: relative;
+  right: 1.25rem;
+  top: 13.125rem;
+  width: 18.75rem;
+}
+
+.ads_300x600 {
+  background-color: var(--color-white);
+  height: 37.5rem;
+  width: 18.75rem;
+}
+
+.ads_970x250 {
+  width: 60.625rem;
+  height: 15.625rem;
+  background: white;
+  margin: 0 auto;
+}
+
+#header {
+  display: flex;
+  height: 5.0rem;
+  position: fixed;
+  width: 100%;
+  z-index: var(--z-index-header);
+}
+
+#header_secundary {
+  align-items: center;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1.88) 40%, transparent);
+  display: flex;
+  height: 5.0rem;
+  justify-content: space-evenly;
+  max-width: 126rem;
+  padding-left: 2rem;
+  padding-right: 4rem;
+  width: auto;
+  z-index: var(--z-index-menu) !important;
+}
+
+.menu {
+  align-items: center;
+  display: flex;
+  float: left;
+  height: 5.0rem;
+  justify-content: flex-end;
+  margin-left: 5.0rem;
+  width: auto;
+  z-index: var(--z-index-base) !important;
+}
+
+.menu>li {
+  float: left;
+  margin-left: 0.625rem;
+  position: relative;
+  z-index: 10;
+}
+
+.menu>li>a {
+  color: var(--color-white);
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 0.875rem;
+}
+
+.menu>li>a::after {
+  background: var(--color-red);
+  border: none;
+  content: " ";
+  display: block;
+  height: 0.0625rem;
+  position: absolute;
+  right: 0.3125rem;
+  top: 3.8125rem;
+  transition: width var(--transition-fast);
+  width: 0.0rem;
+  z-index: -1;
+}
+
+.menu>li>a:hover::after {
+  width: calc(100% + (-0.625rem));
+}
+
+.menu_ico {
+  display: inline-block;
+  filter: drop-shadow(0.1em 0.1em 0.2em var(--color-black));
+  height: 1.5rem;
+  vertical-align: middle;
+  width: 1.5rem;
+}
+
+.main-menu_open {
+  --menu-size: 2.75rem;
+  background-color: var(--color-red);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  height: var(--menu-size);
+  margin-left: 0.3125rem;
+  padding: 0;
+  position: fixed;
+  right: 2rem;
+  top: 1.5rem;
+  transition: opacity var(--transition-fast);
+  width: var(--menu-size);
+  z-index: var(--z-index-header) !important;
+}
+
+.main-menu_open:hover {
+  opacity: 0.8;
+}
+
+.main-menu_hide {
+  --menu-size: 2.75rem;
+  background-color: var(--color-white);
+  border: none;
+  border-radius: 50%;
+  color: var(--color-black);
+  cursor: pointer;
+  display: block;
+  float: right;
+  font-size: 1.5625rem;
+  font-weight: bold;
+  height: var(--menu-size);
+  left: -2.0rem;
+  position: relative;
+  top: 1.5rem;
+  transition: background var(--transition-fast), color 0.5s, border-color 0.5s;
+  width: var(--menu-size);
+}
+
+.main-menu_hide:hover {
+  background-color: var(--color-red);
+}
+
+.main-menu_txt {
+  backface-visibility: hidden;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 140%;
+  position: fixed;
+  right: 5.9375rem;
+  text-decoration: none;
+  text-shadow: 0.1em 0.1em 0.2em var(--color-black);
+  top: 2.25rem;
+  transform-origin: center bottom;
+  z-index: var(--z-index-base) !important;
+}
+
+div#main-menu {
+  background-color: rgba(0, 0, 0, 0.98);
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition-duration: 0.6s;
+  width: 0;
+  z-index: var(--z-index-player) !important;
+}
+
+div#container-menu {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 84rem;
+  padding-left: 1.0625rem;
+  padding-right: 1.0625rem;
+  position: relative;
+  width: 100%;
+}
+
+.nav-menu {
+  backface-visibility: hidden;
+  display: grid;
+  font-family: var(--font-primary);
+  margin-top: 6.25rem;
+  padding-left: 5rem;
+  position: relative;
+}
+
+.nav-menu a {
+  color: var(--color-white);
+  line-height: 170%;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.nav-menu a:hover {
+  color: var(--color-red);
+}
+
+.nav-menu_main {
+  font-size: 4.75rem;
+  font-weight: 800;
+}
+
+.nav-menu_second {
+  font-size: 2.4375rem;
+  font-weight: 200;
+}
+
+#main-nav {
+  background-color: var(--color-black-midi);
+  bottom: 0;
+  height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  transition: height 1s 0.1s;
+  width: 100%;
+  z-index: var(--z-index-base) !important;
+}
+
+div#container-nav {
+  padding-bottom: 4.375rem;
+  padding-top: 6.375rem;
+}
+
+.contact-container {
+  font-family: var(--font-primary);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+  padding-top: 3.375rem;
+  padding-left: 20.0625rem;
+  padding-right: 20.0625rem;
+}
+
+.contact-info h1 {
+  font-size: 4.75rem;
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  font-size: 1.125rem;
+  line-height: 140%;
+}
+
+.contact-data {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contact-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 0.125rem solid #ffffff;
+  padding-bottom: 1.875em;
+  text-align: right;
+}
+
+.contact-line span {
+  font-weight: bold;
+  font-size: 1.375rem;
+}
+
+.contact-line a {
+  font-size: 1.375rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.contact-line a:not(:disabled):hover {
+  background: var(--color-red);
+}
+
+/* .contact-write {
+  margin-top: 80px;
+} */
+
+.write-flex {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.write-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.write-text h2 {
+  margin: 0px;
+  font-size: 4.75rem;
+  text-transform: none;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: 0;
+}
+
+.right-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form-box {
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 30px;
+  width: 540px;
+}
+
+.form-info {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  font-family: var(--font-primary);
+  border: none;
+  border-bottom: 1px solid #999;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.form-button {
+  background: var(--color-red);
+  color: white;
+  border: none;
+  margin: 0 auto;
+  padding: 10px 20px;
+  transition: var(--transition-fast);
+  width: 500px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.news-button {
+  bottom: -25px;
+}
+
+.events-button {
+  bottom: 35px;
+}
+
+.form-button:hover {
+  opacity: 0.8;
+}
+
+.container-announcement {
+  max-width: 700px;
+  line-height: 1.8;
+}
+
+.intro {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  list-style: disc;
+}
+
+.final {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.signature {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 1.375rem;
+}
+
+.name,
+.contact {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+div#requests {
+  bottom: 8.75rem;
+  display: none;
+  height: 29.5rem;
+  overflow-x: hidden;
+  position: fixed;
+  right: 4rem;
+  width: 37.875rem;
+  z-index: var(--z-index-player) !important;
+}
+
+.requests_widget {
+  animation: fadeIn 0.25s;
+  background-color: var(--color-black-low);
+  border-radius: 0.3125rem;
+  bottom: 8.75rem;
+  box-shadow: 0em 0em 0.2em 0.0rem var(--color-black);
+  height: 29.5rem;
+  overflow-x: hidden;
+  position: fixed;
+  width: 37.875rem;
+}
+
+.requests_bt {
+  --menu-size: 3.5rem;
+  align-items: center;
+  background-color: var(--color-red);
+  border: none;
+  border-radius: 50%;
+  bottom: 4.375rem;
+  cursor: pointer;
+  display: inline-flex;
+  height: var(--menu-size);
+  justify-content: center;
+  padding: 0.625rem;
+  position: fixed;
+  right: 2rem;
+  transition: var(--transition-fast);
+  user-select: none;
+  vertical-align: middle;
+  width: var(--menu-size);
+  z-index: var(--z-index-player);
+}
+
+.requests_bt:hover {
+  opacity: 0.8;
+}
+
+.title-nav {
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 3.70rem;
+  font-weight: 900;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 98rem;
+  padding-top: 3.375rem;
+  width: 100%;
+}
+
+.content-nav {
+  backface-visibility: hidden;
+  list-style: none;
+  margin-bottom: 5.3125rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 96.6875rem;
+  padding: 0;
+  width: 100%;
+}
+
+div#content {
+  max-width: 1450px;
+  margin: 0 auto;
+  color: var(--color-white);
+  font-family: var(--font-primary);
+}
+
+div#load {
+  backface-visibility: hidden;
+  display: flex;
+  height: 6.25rem;
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6.25rem;
+}
+
+#loader {
+  align-items: center;
+  background: var(--color-black);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity var(--transition-slow);
+  width: 100%;
+  z-index: var(--z-index-loader);
+}
+
+#loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.historic_txt {
+  background: var(--color-white);
+  color: var(--color-black);
+  font-family: var(--font-primary);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 110%;
+  padding: 0.25rem 0.3125rem 0.125rem;
+  text-align: left;
+  width: fit-content;
+}
+
+.historic {
+  backface-visibility: hidden;
+  bottom: 2.125rem;
+  left: 81.25rem;
+  max-width: 22.5rem;
+  padding: 0 1rem;
+  position: absolute;
+}
+
+div#historicSong {
+  backface-visibility: hidden;
+  display: grid;
+  transform: scaleY(0) scaleZ(0);
+  transform-origin: center bottom;
+  transition: 160ms 1900ms;
+}
+
+.historic .music-info {
+  backface-visibility: hidden;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 130%;
+  padding: 0.5rem 0.3125rem 0.125rem;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.historic .music-info .artist {
+  font-size: 1.1875rem;
+  font-weight: 900;
+  width: 100%;
+}
+
+.bt_play {
+  background-image: url("/ritualfm/public/images/bt_play.png");
+  float: left;
+  height: 20.9375rem;
+  left: 36.25rem;
+  margin: 0.0rem;
+  max-width: 41.1875rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-40%, -50%);
+  transition: opacity var(--transition-fast);
+  width: 17.625rem;
+}
+
+.bt_play:hover {
+  opacity: 0.8;
+}
+
+.bt_stop {
+  background-image: url("/ritualfm/public/images/bt_stop.gif");
+  float: left;
+  height: 33.125rem;
+  left: 12.5rem;
+  margin: 0.0rem;
+  max-width: 41.1875rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-40%, -50%);
+  transition: opacity var(--transition-fast);
+  width: 31.25rem;
+}
+
+.bt_stop:hover {
+  opacity: 0.8;
+}
+
+div#mini_player {
+  background: linear-gradient(92.45deg, rgba(0, 0, 0, .9) 100%, transparent 96.35%);
+  bottom: 0;
+  height: 0.0rem;
+  position: fixed;
+  text-align: center;
+  transition: 160ms 700ms;
+  width: 100%;
+  z-index: var(--z-index-player) !important;
+}
+
+.mini_play {
+  background-image: url("/ritualfm/public/images/mini_play.png");
+  float: left;
+  height: 3.75rem;
+  margin: 0.0rem;
+  transition: opacity var(--transition-fast);
+  width: 3.75rem;
+}
+
+.mini_play:hover {
+  opacity: 0.8;
+}
+
+.mini_stop {
+  background-image: url("/ritualfm/public/images/mini_stop.png");
+  float: left;
+  height: 3.75rem;
+  margin: 0.0rem;
+  transition: opacity var(--transition-fast);
+  width: 3.75rem;
+}
+
+.mini_stop:hover {
+  opacity: 0.8;
+}
+
+div#playerButton2 {
+  cursor: pointer;
+}
+
+div#playerButton {
+  cursor: pointer;
+}
+
+div#lyricsSong {
+  backface-visibility: hidden;
+  color: var(--color-white);
+  display: flex;
+  float: left;
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 900;
+  left: 8rem;
+  margin-top: 1.5625rem;
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 60%;
+}
+
+.volumeButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  height: 5.125rem;
+  left: 88.1875rem;
+  outline: none;
+  position: absolute;
+  text-align: center;
+  top: calc(50% - 2.4375rem);
+  width: 5.125rem;
+}
+
+.volumeButton:hover .levels {
+  margin-top: -5.625rem;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  visibility: visible;
+}
+
+.volumeplayer {
+  background-color: var(--color-black);
+  float: left;
+  height: 3.75rem;
+  position: static;
+  width: 3.75rem;
+}
+
+.levels {
+  border-radius: 0.3125rem 0.3125rem 0 0;
+  height: 1.875rem;
+  margin-top: -0.625rem;
+  position: absolute;
+  transform: matrix(0.35, 0, 0, 0.35, 24.7, 24.7);
+  transition: var(--transition-medium);
+  visibility: hidden;
+  width: 3.75rem;
+  z-index: -1;
+}
+
+.mega {
+  fill: var(--color-red);
+  stroke: var(--color-red);
+}
+
+circle {
+  stroke: #222222;
+}
+
+circle.active {
+  stroke: var(--color-red);
+}
+
+.controlplayer {
+  background-color: var(--color-black);
+  position: relative;
+  rotate: none;
+  visibility: hidden;
+}
+
+.cover-album {
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+  height: 3.75rem !important;
+  margin-bottom: 0;
+  margin-right: 0.625rem;
+  transition: background-image 1s;
+  width: 3.75rem;
+}
+
+div#currentCoverArt {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+div#Song {
+  background: 0 0;
+  bottom: 3.125rem;
+  color: var(--color-white);
+  left: 35%;
+  max-width: 28.75rem;
+  position: absolute;
+  text-transform: uppercase;
+  top: auto;
+  transform: translateY(0);
+  width: 100%;
+  z-index: 1;
+}
+
+div#currentArtist {
+  backface-visibility: hidden;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 120%;
+  padding: 0.5rem 0.75rem 0.3125rem;
+  transform: scalex(0) scaleZ(0);
+  transform-origin: left bottom;
+  transition: 460ms 1600ms;
+  width: fit-content;
+}
+
+div#currentSong {
+  backface-visibility: hidden;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+  font-weight: 900;
+  line-height: 140%;
+  margin-left: 0.625rem;
+  overflow: hidden;
+  padding: 0.375rem 0.625rem 0.1875rem;
+  position: relative;
+  transform: scalex(0) scaleZ(0);
+  transform-origin: left bottom;
+  transition: 460ms 1900ms;
+  width: fit-content;
+}
+
+.news-base {
+  width: 1015px;
+}
+
+.news-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  margin-bottom: 2.8125rem;
+}
+
+.news-feature {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 35px;
+}
+
+.news-feature .title {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  background: red;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  max-width: 80%;
+}
+
+.news-feature .description {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  font-size: 18px;
+  width: 115%;
+}
+
+.news-text {
+  backface-visibility: hidden;
+  bottom: 0;
+  line-height: 1.3;
+  position: absolute;
+  width: 69%;
+  height: 210px;
+  margin-left: 30px;
+  opacity: 1;
+}
+
+.news-text span {
+  background: #ff0000;
+  box-decoration-break: clone;
+  color: var(--color-white);
+  font-size: 1.875rem;
+  font-weight: 900;
+  padding: 0.75rem 0.9125rem 0.625rem;
+  text-transform: uppercase;
+}
+
+.news-bg {
+  bottom: 0;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  background: -webkit-gradient(linear, left bottom, left top, from(#000000), to(transparent));
+  background: -webkit-linear-gradient(bottom, #000000, transparent);
+  background: -o-linear-gradient(bottom, #000000, transparent);
+  background: linear-gradient(to top, #000000, transparent);
+  opacity: 1;
+}
+
+.news {
+  display: flex;
+  margin-bottom: 55px;
+}
+
+.news img {
+  width: 400px;
+  height: 225px;
+  object-fit: cover;
+  margin-right: 17px;
+}
+
+.news .text h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: none;
+  line-height: 1.4em;
+}
+
+.news .text p {
+  margin: 25px 0 0;
+  font-size: 15px;
+  opacity: 0.5;
+  line-height: 1.6em;
+}
+
+.text {
+  width: 580px;
+}
+
+.author_box {
+  color: var(--color-light-gray);
+  font-family: var(--font-primary);
+  position: relative;
+  bottom: -55px;
+}
+
+.author {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+.date {
+  color: var(--color-white);
+  font-size: 0.6rem;
+}
+
+.side {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 50px 0 50px;
+}
+
+
+.card_music {
+  width: 300px;
+  height: 500px;
+  margin-top: 50px;
+}
+
+.card_music img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card-music-bg {
+  bottom: 205px;
+  position: relative;
+  height: 200px;
+  width: 100%;
+  background: -webkit-gradient(linear, left bottom, left top, from(#000000), to(transparent));
+  background: -webkit-linear-gradient(bottom, #000000, transparent);
+  background: -o-linear-gradient(bottom, #000000, transparent);
+  background: linear-gradient(to top, #000000, transparent);
+  opacity: 1;
+}
+
+.card-music-text {
+  backface-visibility: hidden;
+  bottom: -135px;
+  line-height: 1.3;
+  position: relative;
+  width: 93%;
+  height: 200px;
+  padding: 10px;
+  margin: 0 auto;
+  opacity: 1;
+}
+
+.card-music-text span {
+  background: #ff0000;
+  box-decoration-break: clone;
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 900;
+  padding: 0.5rem 0.5rem 0.5rem;
+  text-transform: uppercase;
+}
+
+.card-music-text .description {
+  position: relative;
+  bottom: -20px;
+  left: 0;
+  font-size: 16px;
+  width: 100%;
+}
+
+.card_music p {
+  font-size: 15px;
+  margin-top: 5px;
+  line-height: 1.6em;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.card-music-text a {
+    pointer-events: auto;
+}
+
+.card_event h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 5px;
+  letter-spacing: -0.9px;
+}
+
+.card_music h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 5px;
+  letter-spacing: -0.9px;
+}
+
+.card_event img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.title-section {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 70px;
+  font-weight: bold;
+  opacity: 0.1;
+  margin-right: 25px;
+  margin-top: 70px;
+  cursor: default;
+}
+
+.sticky-news {
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: 440px;
+  margin-top: unset;
+  z-index: 10;
+}
+
+.horizontal-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+div#latest_news {
+  height: 88%;
+  margin-bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 5.625rem;
+  position: absolute;
+  right: 0;
+  width: 21.875rem;
+  z-index: -5;
+}
+
+.headline-cover {
+  margin-top: 1.5625rem;
+}
+
+.headline {
+  display: inline-block;
+  filter: brightness(0.8);
+  height: 10.25rem;
+  margin-bottom: 1.25rem;
+  width: 20.25rem;
+}
+
+.headline:hover {
+  filter: brightness(1.2);
+}
+
+.headline-img {
+  background-position: 50%;
+  background-size: cover;
+  display: block;
+  height: 10.25rem;
+  width: 20.25rem;
+}
+
+.transition {
+  transition: all var(--transition-medium);
+}
+
+.headline-title {
+  backface-visibility: hidden;
+  bottom: 0;
+  font-family: var(--font-primary);
+  font-size: 0.8125rem;
+  font-weight: 900;
+  left: 0;
+  line-height: 1.3;
+  padding: 0 0 0.374rem 0.9375rem;
+  position: absolute;
+  width: 80%;
+}
+
+.headline-title span {
+  background: var(--color-black);
+  box-decoration-break: clone;
+  color: var(--color-white);
+  letter-spacing: .07em;
+  padding: .3125rem .3125rem .0625rem;
+}
+
+div#plus {
+  height: 3.125rem;
+  margin: 1.875rem auto 9.375rem;
+  transition: transform var(--transition-medium) cubic-bezier(.165, .84, .44, 1);
+  width: 3.125rem;
+}
+
+div#plus:hover {
+  transform: scale(1.2);
+}
+
+.social {
+  align-items: center;
+  bottom: 2.5rem;
+  display: flex;
+  height: auto;
+  justify-content: flex-end;
+  left: 1.5rem;
+  position: absolute;
+  width: auto;
+}
+
+.social a {
+  display: inline-flex;
+  margin: 0.75rem 0.75rem 0.0rem 0.0rem;
+  transition: transform var(--transition-medium) cubic-bezier(.165, .84, .44, 1);
+}
+
+.social a:hover {
+  transform: scale(1.2);
+}
+
+.socialplayer {
+  margin-right: 1.25rem;
+  position: static;
+}
+
+.ico_logica {
+  background: url("/ritualfm/public/images/ico_logica.png") no-repeat;
+  bottom: 0.4375rem;
+  float: right;
+  height: 0.5625rem;
+  margin-bottom: 0;
+  position: fixed;
+  right: 0.625rem;
+  width: 9.4375rem;
+}
+
+div#footer {
+  color: var(--color-gray);
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.125rem;
+  margin-left: -15%;
+  padding-bottom: 1.25rem;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: rotate(-90deg) translateY(0);
+  transform-origin: bottom;
+  white-space: normal;
+  width: 100%;
+}
+
+#footer a {
+  color: var(--color-gray);
+}
+
+#footer a:hover {
+  color: #f00;
+}
+
+.CookieMessage {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: #000;
+  bottom: 1.25rem;
+  color: #fff;
+  left: 0.9375rem;
+  max-width: 24.375rem;
+  position: fixed;
+  width: calc(100% - 1.875rem);
+  z-index: 3 !important;
+}
+
+.CookieMessage-content p {
+  float: right;
+  font-family: var(--font-primary);
+  margin: 1.25rem 1.25rem 1.25rem 1.25rem;
+}
+
+.CookieMessage-button {
+  background: none;
+  border: 0.0625rem solid #ff0000;
+  color: #ff0000;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-left: 0.9375rem;
+  padding: 0.75rem 2rem 0.625rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.CookieMessage-button:hover {
+  background: #ff0000;
+  color: #fff;
+}
+
+.error-message {
+  color: #FFFFFF;
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  margin-bottom: 1.625rem;
+  position: relative;
+  text-align: center;
+  top: 40%;
+}
+
+.error-message button {
+  background-color: red;
+  border: 0;
+  border-radius: 0.625rem;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.625rem;
+}
+
+div#title_inst {
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 4.75rem;
+  font-weight: 700;
+  margin-bottom: 3.125rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 98rem;
+  padding-top: 3.375rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.content-inst {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.4;
+  list-style: none;
+  margin-bottom: 3.125rem;
+  margin-right: auto;
+  max-width: 56.25rem;
+  padding: 0;
+  width: 100%;
+  color: var(--color-white);
+}
+
+.content-inst a,
+.link-underline {
+  background: transparent linear-gradient(0deg, #fff 6.5%, transparent .0625rem) no-repeat 50% / 100% 100%;
+  display: inline-block;
+  text-decoration: none;
+  transition: background-size .2s cubic-bezier(.165, .84, .44, 1), color .2s cubic-bezier(.165, .84, .44, 1);
+}
+
+@media (pointer: fine) {
+
+  .content-inst a:hover,
+  .link-underline:hover {
+    background-size: 0 100%;
+  }
+}
+
+@media (max-width: 48.0rem) {
+  .menu {
+    margin-left: 1.25rem;
+  }
+
+  .menu>li>a {
+    font-size: 0.8125rem;
+    padding: 0.625rem;
+  }
+
+  .main-menu_txt {
+    display: none;
+  }
+
+  div#emphasis {
+    height: auto;
+    width: 100%;
+  }
+
+  .emphasis-imagem {
+    height: 25.0rem;
+    width: 100%;
+  }
+
+  .news2 a,
+  .news3 a {
+    height: auto;
+    width: 100%;
+  }
+
+  .cover_news2,
+  .text_news2 {
+    float: none;
+    position: relative;
+    width: 100%;
+  }
+
+  div#latest_news {
+    position: relative;
+    right: auto;
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* NOVOS ESTILOS ADICIONADOS ABAIXO */
+
+.resposta {
+  display: block;
+  margin-top: 15px;
+  color: var(--color-red);
+}
+
+
+/* ==========================================================================
+   Estilos do Painel de Controle (Dashboard) - Versão Independente
+   ========================================================================== */
+
+/* Container principal que define o espaçamento da página */
+.dashboard-container {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 6.375rem 2rem 4.375rem 2rem;
+  color: var(--color-white);
+  font-family: var(--font-primary);
+}
+
+.dashboard-container h2 {
+  text-transform: none;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-container .subtitle {
+  margin-top: 0;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* --- Menu Lateral --- */
+.dashboard-menu {
+  flex-basis: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-dark-gray);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.dashboard-menu-item {
+  color: var(--color-white);
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color var(--transition-fast);
+}
+
+.dashboard-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dashboard-menu-item.active {
+  background-color: var(--color-red);
+}
+
+.dashboard-menu .logout-button {
+  background: transparent;
+  border: 2px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.75rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  transition: all var(--transition-fast);
+}
+
+.dashboard-menu .logout-button:hover {
+  background-color: var(--color-gray);
+  color: var(--color-black);
+}
+
+/* --- Conteúdo Principal --- */
+.dashboard-content {
+  flex-grow: 1;
+}
+
+/* --- Grid de Status --- */
+.dashboard-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.status-card {
+  background-color: var(--color-dark-gray);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.status-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--color-light-gray);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.status-card .status-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+
+/* ==========================================================================
+   Estilos Adicionais para o Dashboard do Usuário
+   ========================================================================== */
+
+/* --- Ícones para o Menu do Dashboard --- */
+
+.dashboard-menu-item,
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dashboard-menu-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+
+/* Garante alinhamento do ícone também no botão de sair */
+.logout-button .dashboard-menu-icon {
+  stroke-width: 2.5;
+}
+
+
+/* --- Estilos para a Seção de Informações de Acesso --- */
+
+.access-info-container {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-dark-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-dark-gray);
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  word-break: break-all;
+  /* Garante que URLs longas quebrem a linha */
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-light-gray);
+  font-weight: 700;
+  margin-right: 1.5rem;
+  /* Espaço entre o rótulo e o valor */
+}
+
+.info-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  stroke: currentColor;
+  opacity: 0.8;
+}
+
+.info-value {
+  color: var(--color-white);
+  text-align: right;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   Estilos do Painel de ADMINISTRAÇÃO
+   ========================================================================== */
+
+/* --- Estrutura e Layout Principal --- */
+
+.admin-container {
+  max-width: 1400px;
+  margin: 75px auto;
+  padding: 2.5rem;
+  color: var(--color-white);
+  /* Padrão */
+  background-color: var(--color-black-midi);
+  /* Padrão */
+  font-family: var(--font-primary);
+  /* Padrão */
+}
+
+.admin-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.admin-sidebar {
+  flex: 0 0 240px;
+  position: sticky;
+  top: 2rem;
+}
+
+.admin-content {
+  flex: 1 1 0;
+  width: 1440px;
+  min-width: 0;
+}
+
+/* --- Cabeçalho das Páginas --- */
+
+.admin-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-dark-gray);
+  /* Padrão */
+  gap: 1.5rem;
+}
+
+.admin-page-title,
+.welcome-box h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  text-transform: none;
+}
+
+.admin-page-subtitle,
+.welcome-box .subtitle {
+  margin: 0.25rem 0 0 0;
+  color: var(--color-light-gray);
+  /* Padrão */
+  font-size: 1rem;
+}
+
+.admin-header-actions {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* --- Menu Lateral --- */
+
+.admin-menu-nav {
+  background-color: var(--color-dark-gray);
+  /* Padrão */
+  padding: 0.75rem;
+  border-radius: 12px;
+}
+
+.admin-menu-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gray);
+  /* Padrão */
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.admin-menu-nav a {
+  display: block;
+  color: var(--color-light-gray);
+  /* Padrão */
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  transition: all var(--transition-fast);
+}
+
+.admin-menu-nav a:hover {
+  background-color: var(--color-black-low);
+  /* Padrão */
+  color: var(--color-white);
+}
+
+.admin-menu-nav a.active {
+  background-color: var(--color-red);
+  /* Padrão */
+  color: var(--color-white);
+}
+
+.admin-menu-nav .logout-button {
+  border: 2px solid var(--color-gray);
+  /* Padrão */
+  color: var(--color-light-gray);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.admin-menu-nav .logout-button:hover {
+  border-color: var(--color-red);
+  color: var(--color-white);
+  background-color: var(--color-red);
+}
+
+/* --- Cards de Status --- */
+
+.admin-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem auto;
+}
+
+.admin-card {
+  background-color: var(--color-dark-gray);
+  /* Padrão */
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+}
+
+.admin-card h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.8rem;
+  color: var(--color-light-gray);
+  /* Padrão */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admin-card .admin-card-number {
+  display: block;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  /* Padrão */
+}
+
+/* --- Tabelas e Caixas de Conteúdo --- */
+
+.admin-content-box {
+  background-color: var(--color-dark-gray);
+  /* Padrão */
+  border-radius: 12px;
+  /* margin: 2rem auto; */
+  padding: 1rem;
+}
+
+.admin-content-box h3 {
+  font-size: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  margin: 0;
+  border-bottom: 1px solid var(--color-black-midi);
+  /* Padrão */
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-black-midi);
+  /* Padrão */
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--color-black-low);
+  /* Padrão */
+}
+
+.data-table thead {
+  color: var(--color-light-gray);
+  /* Padrão */
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.data-table .actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* --- Formulários --- */
+
+.admin-form {
+  padding: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+}
+
+.form-control {
+  width: 98%;
+  padding: 0.8rem 0.4rem;
+  background-color: var(--color-black);
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  color: var(--color-white);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 150px;
+}
+
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23747474' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* --- Botões --- */
+
+.btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn.btn-primary {
+  background-color: var(--color-red);
+}
+
+.btn.btn-secondary {
+  background-color: var(--color-gray);
+  color: var(--color-black);
+}
+
+.btn.btn-sm {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.btn.btn-view,
+.btn.btn-edit,
+.btn.btn-danger {
+  color: var(--color-white);
+}
+
+.btn.btn-view {
+  background-color: var(--color-gray);
+}
+
+.btn.btn-edit {
+  background-color: var(--color-gray);
+}
+
+.btn.btn-danger {
+  background-color: var(--color-gray);
+}
+
+.btn.btn-danger:hover,
+.btn.btn-edit:hover,
+.btn.btn-view:hover {
+  background-color: var(--color-red);
+}
+
+.form-delete {
+  display: inline;
+}
+
+/* --- Resposta AJAX --- */
+.ajax-response {
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  display: none;
+}
+
+.ajax-response.success {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.ajax-response.error {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+
+
+/* INPUT IMAGEM */
+/* Esconde o input de arquivo padrão */
+.input-file-hidden {
+  display: none;
+}
+
+.custom-file-upload {
+  width: 98%;
+  padding: 0.8rem 0.4rem;
+  background-color: var(--color-black);
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  color: var(--color-white);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.custom-file-upload:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+}
+
+/* Estiliza a parte que mostra o nome do arquivo */
+.custom-file-upload .file-name {
+  padding: 8px 15px;
+  color: var(--color-white);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Efeito hover para dar feedback ao usuário */
+.custom-file-upload:hover {
+  border-color: var(--color-light-gray);
+  background-color: var(--color-black-midi);
+}
+
+
+
+
+/* ==========================================================================
+   Estilos da Seção de Comentários (Estilo Notifica Brasil)
+   ========================================================================== */
+
+.comments-container {
+  /* background-color: var(--color-dark-gray); */
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 3rem auto 0 auto;
+  /* Margem superior e centralizado */
+  max-width: 90%;
+  /* Largura máxima de 75% do container pai */
+  /* border: 1px solid var(--color-light-gray); */
+}
+
+.comments-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 25px;
+  margin: 0 0 0.8rem 0;
+  padding-bottom: 1.5rem;
+  /* border-bottom: 1px solid var(--color-light-gray); */
+  text-align: start;
+  color: var(--color-light-gray);
+  text-transform: none;
+}
+
+.comments-title p {
+  color: var(--color-light-gray);
+}
+
+/* --- Formulário e Prompt de Login --- */
+.comment-form-wrapper {
+  margin-bottom: 2.5rem;
+}
+
+.comment-form-wrapper .form-actions {
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.comment-form-wrapper .btn {
+  display: block;
+  margin: 0 right;
+  color: var(--color-white);
+  background-color: var(--color-red);
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 600;
+  max-width: 200px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.comment-user-info {
+  text-align: start;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: var(--color-gray);
+}
+
+.comment-user-info a {
+  color: var(--color-light-gray);
+  font-weight: 600;
+}
+
+.comment-login-prompt {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.comment-login-prompt p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
+}
+
+.comment-login-prompt a {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.comment-login-prompt .btn {
+  display: block;
+  margin: auto;
+  color: var(--color-white);
+  background-color: var(--color-red);
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 600;
+  max-width: 200px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: 0;
+  transition: 0.3s ease-in-out;
+}
+
+/* --- Lista de Comentários --- */
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment-item {
+  border-bottom: 1px solid var(--color-light-gray-hard);
+  padding-bottom: 1.5rem;
+}
+
+.comment-list .comment-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.comment-author {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-white);
+  margin-right: 10px;
+  text-transform: capitalize;
+}
+
+.comment-date {
+  font-size: 0.7rem;
+  color: var(--color-gray);
+}
+
+.comment-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-light-gray);
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.no-comments {
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--color-gray);
+}
+
+/* --- Disclaimer/Aviso --- */
+.disclaimer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-gray);
+  font-size: 0.8rem;
+  color: var(--color-gray);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.disclaimer a {
+  color: var(--color-gray);
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Estilos da Moderação de Comentários
+   ========================================================================== */
+
+.comment-moderation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--color-black);
+}
+
+.comment-card {
+  background-color: var(--admin-widget-color);
+  border-radius: 12px;
+  border: 1px solid var(--admin-border-color);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-dark-gray);
+}
+
+.comment-card.pending {
+  border-left: 4px solid var(--color-red);
+}
+
+.comment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--admin-border-color);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.comment-card-author {
+  font-size: 0.9rem;
+  color: var(--admin-text-secondary);
+}
+
+.comment-card-author a {
+  color: var(--admin-text-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.comment-card-author a:hover {
+  text-decoration: underline;
+}
+
+.comment-card-date {
+  font-size: 0.8rem;
+  color: var(--admin-text-secondary);
+  flex-shrink: 0;
+}
+
+.comment-card-body {
+  padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.comment-card-body p {
+  margin: 0;
+}
+
+.comment-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--admin-border-color);
+  align-items: center;
+}
+
+.comment-card-actions .status-approved {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #22c55e;
+  /* Verde para status 'Aprovado' */
+  margin-right: auto;
+  /* Empurra para a esquerda */
+}
+
+/* --- Botões de Ação para Moderação --- */
+
+.btn.btn-success {
+  background-color: #166534;
+  /* Verde escuro */
+  color: #bbf7d0;
+  /* Verde claro (texto) */
+}
+
+.btn.btn-success:hover {
+  background-color: #15803d;
+}
+
+.btn.btn-danger {
+  /* Mudança para Spam/Remover */
+  background-color: #991b1b;
+  /* Vermelho escuro */
+  color: #fecaca;
+  /* Vermelho claro (texto) */
+}
+
+.btn.btn-danger:hover {
+  background-color: var(--color-red);
+}
+
+
+
+
+/* ================================================= */
+/* ESTILOS GLOBAIS PARA FORMULÁRIOS MODERNOS         */
+/* ================================================= */
+
+/* Wrapper genérico para formulários (login, contato, etc.) */
+.form-wrapper {
+  font-family: var(--font-primary);
+  /* max-width: 550px; */
+  /* Um pouco menor para formulários de login */
+  margin: 2rem auto;
+  /* Centraliza e adiciona margem vertical */
+  padding: 2rem;
+}
+
+.form-wrapper h2 {
+  color: var(--color-white);
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+  /* Remove o uppercase padrão de h2 para títulos de formulário */
+}
+
+.form-wrapper .form-subtitle {
+  color: var(--color-light-gray);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+/* Grupo que contém cada input e seu label */
+.form-wrapper .form-group {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+/* Estilo dos campos de input e textarea */
+.form-wrapper .form-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--color-light-gray-hard);
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  padding: 0.75rem 0.25rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.form-wrapper .form-input:focus {
+  border-bottom-color: var(--color-red);
+}
+
+/* Estilo do label flutuante */
+.form-wrapper .form-label {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.25rem;
+  color: var(--color-gray);
+  pointer-events: none;
+  transition: all var(--transition-fast) ease-in-out;
+}
+
+/* Efeito de flutuar do label */
+.form-wrapper .form-input:focus+.form-label,
+.form-wrapper .form-input:not(:placeholder-shown)+.form-label {
+  top: -1.2rem;
+  left: 0;
+  font-size: 0.8rem;
+  color: var(--color-red);
+}
+
+.form-wrapper textarea.form-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Ajustes no botão de envio para se adequar ao novo formulário */
+.form-wrapper .form-button {
+  width: 100%;
+  border-radius: 5px;
+  padding: 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 1rem;
+  /* Espaçamento acima do botão */
+}
+
+/* Estilos para os links abaixo do formulário (Esqueceu a senha?, etc.) */
+.form-links {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.form-links a {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color var(--transition-fast);
+}
+
+.form-links a:hover {
+  color: var(--color-red);
+}
+
+.form-links span {
+  color: var(--color-light-gray-hard);
+  margin: 0 0.5rem;
+}
+
+
+
+
+
+/* ==========================================================================
+   Estilos do Layout para Mensagens
+   ========================================================================== */
+
+.comment-card-author-msg {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-card-author-msg a {
+  font-size: 0.85rem;
+  color: var(--color-gray);
+}
+
+
+
+
+/* ==========================================================================
+   Layout Moderno em Grade para Gerenciamento de Usuários
+   ========================================================================== */
+
+.user-grid {
+  display: grid;
+  /* Cria colunas responsivas: elas terão no mínimo 340px e ocuparão o espaço disponível. */
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  /* Espaçamento entre os cards */
+  padding-top: 1rem;
+}
+
+.user-card {
+  background-color: var(--color-dark-gray);
+  border-radius: 12px;
+  border: 1px solid var(--color-light-gray-hard);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.user-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--color-black-midi);
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-light-gray-hard);
+}
+
+.user-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.user-identity strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.user-identity a {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  text-decoration: none;
+}
+
+.user-identity a:hover {
+  color: var(--color-red);
+}
+
+.user-role-badge {
+  margin-left: auto;
+  /* Empurra o badge para a direita */
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.user-card-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+  /* Faz esta seção crescer para empurrar as ações para baixo */
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.info-item span {
+  color: var(--color-gray);
+}
+
+.info-item strong {
+  color: var(--color-light-gray);
+  font-weight: 600;
+}
+
+.user-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--color-black-midi);
+  border-radius: 0 0 12px 12px;
+}
+
+.no-results-card {
+  grid-column: 1 / -1;
+  /* Ocupa todas as colunas da grade */
+  background-color: var(--color-dark-gray);
+  padding: 3rem;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.no-results-card p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.1rem;
+  color: var(--color-gray);
+}
+
+
+/* ==========================================================================
+   Layout Moderno em Lista para Gerenciamento de Posts
+   ========================================================================== */
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  /* Thumbnail | Conteúdo | Status | Ações */
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-dark-gray);
+  border-radius: 12px;
+  border: 1px solid var(--color-light-gray-hard);
+  transition: background-color var(--transition-fast);
+}
+
+.post-item:hover {
+  background-color: var(--color-black-low);
+}
+
+.post-item-thumbnail img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.post-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.post-item-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.post-item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--color-gray);
+}
+
+.post-item-status {
+  justify-self: center;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge.status-published {
+  background-color: rgba(34, 197, 94, 0.2);
+  /* Verde de Sucesso, com transparência */
+  color: #22c55e;
+}
+
+.status-badge.status-draft {
+  background-color: rgba(116, 116, 116, 0.2);
+  /* Cinza, com transparência */
+  color: var(--color-light-gray);
+}
+
+.post-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Ajusta os botões para terem apenas ícones, economizando espaço */
+.post-item-actions .btn-sm {
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+
+
+
+/* ==========================================================================
+   Layout Moderno em Tags para Gerenciamento de Categorias
+   ========================================================================== */
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  /* Permite que as tags quebrem para a próxima linha */
+  gap: 1rem;
+}
+
+.category-item {
+  position: relative;
+  /* Essencial para posicionar as ações */
+  background-color: var(--color-dark-gray);
+  border-radius: 8px;
+  border: 1px solid var(--color-light-gray-hard);
+  transition: all var(--transition-fast);
+  overflow: hidden;
+  /* Garante que os cantos das ações fiquem arredondados */
+}
+
+.category-item-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.category-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-red);
+}
+
+.category-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-post-count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: var(--color-black);
+  color: var(--color-gray);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.category-item-actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  opacity: 0;
+  /* Inicia oculto */
+  transition: opacity var(--transition-fast);
+}
+
+/* Mágica do CSS: exibe as ações ao passar o mouse sobre o item */
+.category-item:hover .category-item-actions {
+  opacity: 1;
+}
+
+.category-item-actions .btn {
+  background-color: transparent;
+  border: 1px solid var(--color-gray);
+}
+
+.category-item-actions .btn:hover {
+  background-color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+/* Ajusta o padding para os botões com ícone */
+.category-item-actions .btn-sm {
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+
+
+
+
+
+/* ==========================================================================
+   Layout de Lista Moderna (Substituta para Tabelas)
+   ========================================================================== */
+
+.modern-list-container {
+  width: 100%;
+}
+
+/* Define o layout em grid para o cabeçalho e para cada item, garantindo alinhamento */
+.modern-list-header,
+.modern-list-item {
+  display: grid;
+  /* ATUALIZADO: Adicionada a primeira coluna para a imagem (120px) */
+  grid-template-columns: 120px 80px 2fr 1fr 1fr 180px;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.modern-list-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-light-gray);
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-light-gray-hard);
+}
+
+.modern-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  /* Espaço entre os itens da lista */
+  margin-top: 1rem;
+}
+
+.modern-list-item {
+  background-color: var(--color-dark-gray);
+  border-radius: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  border: 1px solid var(--color-dark-gray);
+}
+
+.modern-list-item:hover {
+  background-color: var(--color-black-low);
+  border-color: var(--color-light-gray-hard);
+}
+
+/* Estilos para as colunas individuais */
+.modern-list-item .col-title {
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.modern-list-item .col-id,
+.modern-list-item .col-date {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+}
+
+.modern-list-item .col-id span {
+  background-color: var(--color-black);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.col-actions {
+  justify-self: center;
+}
+
+/* Regra NOVA */
+.col-image {
+  /* Centraliza a imagem caso ela seja menor que o contêiner */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Regra NOVA */
+.item-thumbnail {
+  width: 100px;
+  height: 65px;
+  object-fit: cover;
+  /* Garante que a imagem preencha o espaço sem distorcer */
+  border-radius: 8px;
+  background-color: var(--color-black);
+  /* Cor de fundo para o caso da imagem não carregar */
+}
+
+
+
+
+/* ==========================================================================
+   Estilos para Galeria de Eventos com Modal (Apenas CSS) - Versão Ajustada
+   ========================================================================== */
+
+/* Oculta o checkbox que controla o estado do modal */
+.event-toggle-css {
+    display: none;
+}
+
+/* O label funciona como o gatilho clicável para o modal */
+.event-trigger-label {
+    cursor: pointer;
+    display: block;
+    height: 100%; /* Ocupa a altura total do .card_event */
+}
+
+/* Garante que a imagem preencha o espaço do label */
+.card_event img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-medium) ease-out;
+}
+
+/* .card_event:hover img {
+    transform: scale(1.05);
+} */
+
+
+/* --- Estilos do Modal (permanecem os mesmos) --- */
+
+.event-modal-css {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: var(--z-index-loader);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Impede cliques quando oculto */
+    transition: opacity var(--transition-medium), visibility var(--transition-medium);
+}
+
+/* A MÁGICA ACONTECE AQUI: Quando o checkbox é marcado, o modal adjacente é exibido */
+/* Usamos o seletor de irmão adjacente (+) para encontrar o modal */
+.event-toggle-css:checked + .event-trigger-label + .event-modal-css {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.event-modal-content-css {
+    background-color: var(--color-dark-gray);
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr; /* Coluna única em telas menores */
+    position: relative;
+    transform: scale(0.95);
+    transition: transform var(--transition-medium);
+    align-items: center;
+}
+
+/* Ajusta para duas colunas em telas maiores */
+@media (min-width: 768px) {
+    .event-modal-content-css {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.event-toggle-css:checked ~ .event-modal-css .event-modal-content-css {
+    transform: scale(1);
+}
+
+.close-modal-btn-css {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-red);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+.close-modal-btn-css::before,
+.close-modal-btn-css::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 3px;
+    background-color: var(--color-white);
+}
+.close-modal-btn-css::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.close-modal-btn-css::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Estilos do conteúdo do modal */
+.modal-video-container {
+    position: relative; padding-top: 80%; height: 0; overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Estilos do conteúdo do modal */
+.modal-video-container-evento {
+    position: relative; padding-top: 80%; height: 0; overflow: hidden; margin: 5%;
+    border-radius: 12px 12px 0 0;
+}
+
+@media (min-width: 768px) {
+    .modal-video-container {
+        border-radius: 12px 0 0 12px;
+    }
+
+    .modal-video-container-evento {
+        border-radius: 12px 0 0 12px;
+    }
+}
+.modal-video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+
+.modal-video-container-evento iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+
+/* ==========================================================================
+   Estilos Melhorados para Detalhes do Modal de Eventos (UI/UX)
+   ========================================================================== */
+
+.modal-details {
+    padding: 2rem 2.5rem; /* Aumenta o espaçamento interno */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem; /* Cria um espaçamento vertical consistente entre os blocos de informação */
+}
+
+.modal-details h2 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+    text-transform: none;
+    color: var(--color-white);
+    text-transform: uppercase;
+}
+
+.modal-details .modal-attraction {
+    font-size: 1rem;
+    color: var(--color-light-gray);
+    font-weight: 500;
+    margin: -0.5rem 0 0 0; /* Aproxima a atração do título principal */
+    text-transform: uppercase;
+}
+
+.modal-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre a linha de data e a de local */
+    border-top: 1px solid var(--color-light-gray-hard); /* Linha sutil para separar as seções */
+    padding-top: 1.75rem;
+}
+
+.modal-info-list .info-item {
+    display: flex;
+    align-items: center; /* <<< A MÁGICA ACONTECE AQUI: Alinha verticalmente o ícone e o texto */
+    gap: 1rem; /* <<< E AQUI: Cria um espaço harmonioso entre o ícone e o texto */
+    font-size: 1rem;
+    color: var(--color-light-gray);
+    font-weight: 600;
+}
+
+.modal-info-list .info-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--color-gray); /* Usa a cor de destaque para os ícones */
+}
+
+.modal-details .modal-description {
+    font-size: 0.95rem;
+    line-height: 1.7; /* Melhora a legibilidade do parágrafo */
+    color: var(--color-light-gray);
+    margin: 0;
+}
+
+
+
+/* --- Estilos do Modal (que só aparecem após o clique) --- */
+.music-toggle-css:checked ~ .music-modal-css .music-modal-content { transform: scale(1); }
+.close-modal-btn-css { position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; background-color: var(--color-red); border-radius: 50%; cursor: pointer; z-index: 10; }
+.close-modal-btn-css::before, .close-modal-btn-css::after { content: ''; position: absolute; top: 50%; left: 50%; width: 20px; height: 3px; background-color: var(--color-white); }
+.close-modal-btn-css::before { transform: translate(-50%, -50%) rotate(45deg); }
+.close-modal-btn-css::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.modal-media-col { padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.modal-video-container-evento { position: relative; padding-top: 56.25%; height: 0; overflow: hidden; border-radius: 8px; }
+.modal-video-container-evento iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.modal-details-col { padding: 2rem; padding-left: 0; display: flex; flex-direction: column; overflow-y: auto; }
+.modal-details-col h2 { font-size: 1.7rem; font-weight: 800; margin: 0; text-transform: none; color: var(--color-white); text-transform: uppercase; }
+.modal-details-col .modal-artist { font-size: 1.1rem; color: var(--color-white); margin: 0.25rem 0 1.5rem 0; text-transform: none; line-height: 1.2; text-transform: uppercase; }
+.modal-details-col .modal-info-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+.modal-details-col .info-item { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray); border-bottom: 1px solid var(--color-light-gray-hard); padding-bottom: 0.5rem; }
+.modal-details-col .info-item strong { color: var(--color-light-gray); }
+
+
+
+/* ==========================================================================
+   Estilos Adicionais para o Novo Dashboard Administrativo
+   ========================================================================== */
+
+/* Melhora os cards de métricas */
+.admin-card .admin-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+}
+
+.admin-card .admin-card-icon {
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: var(--color-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-card .admin-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Grid para as seções de gráficos e listas */
+.dashboard-section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard-section-grid-graphics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(900px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Container dos gráficos */
+.chart-box {
+  padding: 1rem;
+}
+
+.chart-box h3 {
+  font-size: 1.1rem;
+  /* padding: 0 1rem 1rem 1rem; */
+  margin: 0;
+  border-bottom: 1px solid var(--color-black-midi);
+}
+
+/* Listas de atividade */
+.activity-list {
+  list-style: none;
+  padding: 1.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-list li {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-black-midi);
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  line-height: 1.5;
+}
+
+.activity-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.activity-list li strong {
+  color: var(--color-white);
+}
+
+.activity-list li span {
+  color: var(--color-gray);
+}
+
+.activity-list li a {
+  font-weight: 700;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.activity-list li a:hover {
+  color: var(--color-red);
+}
+
+
+
+/* ==========================================================================
+   Estilos para Ícones do Menu de Administração
+   ========================================================================== */
+
+/* Altera o link para alinhar o ícone e o texto */
+.admin-menu-nav a.admin-menu-item {
+  display: flex;
+  /* Usa flexbox para alinhamento */
+  align-items: center;
+  /* Centraliza verticalmente o ícone e o texto */
+  gap: 0.85rem;
+  /* Espaço entre o ícone e o texto */
+}
+
+/* Estilo base para os ícones SVG */
+.admin-menu-icon {
+  width: 1.125rem;
+  /* 18px */
+  height: 1.125rem;
+  /* 18px */
+  flex-shrink: 0;
+  /* Impede que o ícone seja espremido */
+  stroke-width: 2.5;
+  /* Deixa as linhas do ícone um pouco mais grossas */
+  color: var(--color-light-gray);
+  /* Cor padrão do ícone */
+  transition: color var(--transition-fast);
+  /* Transição suave de cor */
+  stroke: currentColor;
+  /* currentColor é uma variável especial que faz o ícone herdar automaticamente a cor do texto do link (<a>) */
+}
+
+
+/* 'currentColor' para que a cor seja herdada automaticamente do link <a> */
+.admin-menu-icon .color-circle-icon-admin {
+  fill: currentColor;
+  stroke: none;
+}
+
+.admin-menu-icon .color-circle-icon-border-admin {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Garante que o ícone também fique branco no estado :hover */
+.admin-menu-nav a:hover .admin-menu-icon {
+  color: var(--color-white);
+}
+
+/* Garante que o ícone também fique branco no estado .active */
+.admin-menu-nav a.active .admin-menu-icon {
+  color: var(--color-white);
+}
+
+/* Estilos para Ícones de Ação (Cadastrar/Voltar) */
+.icon-action {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: middle;
+  /* Alinha verticalmente com o texto */
+  margin-right: 0.5rem;
+  /* Espaço entre o ícone e o texto */
+  stroke: currentColor;
+  /* Herda a cor do texto */
+}
+
+
+
+/* ==========================================================================
+   Estilos para a Página de Post (Conteúdo e Compartilhamento)
+   ========================================================================== */
+
+/* --- Melhora a legibilidade do texto do post --- */
+.post-content {
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-light-gray);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  /* Aumenta o espaçamento entre linhas */
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+  /* Espaçamento entre parágrafos */
+}
+
+.post-content h2,
+.post-content h3 {
+  color: var(--color-white);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.post-content a {
+  color: var(--color-red);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.post-content strong {
+  color: var(--color-white);
+}
+
+/* --- Container para data de publicação e botões de compartilhamento --- */
+.post-meta-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  /* Permite que os itens quebrem a linha em telas menores */
+}
+
+.post-meta-actions small {
+  color: var(--color-gray);
+  font-size: 0.8rem;
+}
+
+/* --- Estilos para a seção de compartilhamento --- */
+.post-share {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* .share-title {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    font-weight: 700;
+} */
+
+.share-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Estilo base para cada botão de compartilhamento */
+.share-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--color-light-gray-hard);
+  transition: all var(--transition-fast);
+}
+
+.share-link svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-light-gray);
+  transition: stroke var(--transition-fast);
+}
+
+/* Efeitos hover com cores das marcas */
+.share-link:hover {
+  transform: scale(1.1);
+}
+
+.share-link.facebook:hover {
+  border-color: var(--color-white);
+}
+
+.share-link.facebook:hover svg {
+  stroke: var(--color-white);
+}
+
+.share-link.email:hover {
+  border-color: var(--color-white);
+}
+
+.share-link.email:hover svg {
+  stroke: var(--color-white);
+}
+
+.share-link.whatsapp:hover {
+  border-color: var(--color-white);
+}
+
+.share-link.whatsapp:hover svg {
+  stroke: var(--color-white);
+}
+
+.share-link.copy-link:hover {
+  border-color: var(--color-red);
+}
+
+.share-link.copy-link:hover svg {
+  stroke: var(--color-red);
+}
+
+
+
+
+/* ==========================================================================
+   Estilos para Metadados do Post (Autor e Data)
+   ========================================================================== */
+.post-meta-actions small {
+  display: none;
+  /* Escondemos a <small> original */
+}
+
+/* Container para os metadados (autor e data) */
+.post-metadata {
+  display: flex;
+  flex-direction: column;
+  /* Organiza os itens em coluna */
+  align-items: flex-start;
+  /* Alinha os itens à esquerda */
+  gap: 0.5rem;
+  /* Espaço vertical entre 'Autor' e 'Data' */
+  flex-wrap: wrap;
+}
+
+/* Estilo para cada item de metadado */
+.post-author,
+.post-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* Espaço entre o ícone e o texto */
+  font-size: 0.8rem;
+  color: var(--color-gray);
+}
+
+/* Ícone dentro dos metadados */
+.meta-icon {
+  width: 16px;
+  height: 16px;
+
+}
+
+.meta-icon .colors-icon {
+  stroke: none;
+  fill: currentColor;
+}
+
+.meta-icon .colors-icon-border {
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Destaque para o nome do autor */
+.post-author strong {
+  font-weight: 700;
+  color: var(--color-light-gray);
+}
+
+
+/* Colorir alguns icones SVG que estavam apagados */
+.colors-icon {
+  stroke: none;
+  fill: currentColor;
+}
+
+.colors-icon-border {
+  stroke: currentColor;
+  fill: none;
+}
+
+
+
+/* ==========================================================================
+   ESTILOS PARA O PLAYER DE MÚSICA NA PÁGINA
+   ========================================================================== */
+
+/* Container principal que agrupa o vídeo e os detalhes */
+.music-player-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+  gap: 2rem; /* Espaço entre as colunas */
+  background-color: var(--color-dark-gray); /* Cor de fundo do seu tema */
+  border-radius: 12px;
+  margin: 2.5rem 0; /* Espaçamento vertical */
+  overflow: hidden; /* Garante que o conteúdo respeite as bordas arredondadas */
+  border: 1px solid var(--color-red);
+}
+
+/* Wrapper para o vídeo, para torná-lo responsivo (aspect ratio 16:9) */
+.player-video-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Proporção 16:9 (9 / 16 = 0.5625) */
+  height: 0;
+  background-color: var(--color-black); /* Cor de fundo enquanto o vídeo carrega */
+}
+
+.player-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Container para os detalhes da música (artista, álbum, etc.) */
+.player-details {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+}
+
+.player-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.player-details li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--color-light-gray-hard); /* Linha sutil para separar */
+}
+
+.player-details li:last-child {
+  border-bottom: none; /* Remove a linha do último item */
+}
+
+.player-details .info-label {
+  color: var(--color-gray); /* Cor secundária para o rótulo */
+}
+
+.player-details .info-value {
+  color: var(--color-white); /* Cor principal para o dado */
+  font-weight: 700;
+  text-align: right;
+}
+
+/* --- Media Query para Telas Pequenas (Responsividade) --- */
+@media (max-width: 800px) {
+  .music-player-container {
+    grid-template-columns: 1fr; /* Coluna única em telas menores */
+    gap: 0;
+  }
+
+  .player-details {
+    padding: 1.5rem; /* Ajusta o padding para telas menores */
+  }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   Estilos da Página de Configurações do Usuário (CORREÇÃO FORÇADA)
+   ========================================================================== */
+
+/* 1. Layout principal da página: coluna única e centralizada. */
+.settings-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 2rem;
+}
+
+/* 2. Aplica a LARGURA FIXA ao card de perfil e ao container dos formulários. */
+.settings-profile-card {
+    width: 1095px !important;
+}
+
+/* 3. A CORREÇÃO FORÇADA ESTÁ AQUI: */
+/* Usamos !important para anular QUALQUER outra regra de largura. */
+.admin-content-box .form-wrapper {
+    width: 100% !important;
+    max-width: 100% !important; /* Força a remoção do max-width de 550px */
+    box-sizing: border-box !important;
+}
+
+/* 4. Estilos para os elementos internos (sem alterações). */
+.settings-profile-card {
+    background-color: var(--color-dark-gray);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.settings-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem auto;
+    border: 3px solid var(--color-light-gray-hard);
+}
+
+.settings-profile-card h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.3;
+    text-transform: none;
+}
+
+.settings-profile-card form > h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.3;
+    text-transform: none;
+    padding-bottom: 40px;
+}
+
+.settings-profile-card form > h3:nth-of-type(2) {
+  padding-top: 40px;
+}
+
+.settings-profile-card .user-email {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    margin: 0 0 1.5rem 0;
+    word-break: break-all;
+}
+
+.settings-info-dates {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-light-gray-hard);
+}
+
+.settings-info-dates .info-item {
+    background-color: transparent;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    align-items: flex-start;
+}
+
+.settings-info-dates .info-label {
+    gap: 0.5rem;
+}
+
+.admin-content-box > h3 {
+    font-size: 1.25rem;
+    padding: 1.5rem 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid var(--color-black-midi);
+}
+
+.form-wrapper {
+    margin: 1.5rem 0 0 0;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+
+
+
+/* ==========================================================================
+   Estilos para Páginas de Novidades e Comentários do Dashboard
+   ========================================================================== */
+
+/* Layout geral para as novas páginas de conteúdo */
+.content-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1.5rem; /* Espaçamento um pouco menor entre os itens */
+}
+
+/* Container principal para cada item (reutilizando a classe .admin-content-box) */
+.content-layout .admin-content-box {
+    width: 1095px;
+    padding: 1.5rem 2rem;
+    box-sizing: border-box;
+}
+
+/* --- Estilos para a Página de Novidades --- */
+.novidade-item .novidade-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-gray);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.novidade-item .novidade-header svg {
+    width: 16px;
+    height: 16px;
+}
+
+.novidade-item .novidade-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0 0 0.5rem 0;
+}
+
+.novidade-item .novidade-body {
+    color: var(--color-light-gray);
+    line-height: 1.6;
+}
+
+/* --- Estilos para a Página de Comentários --- */
+/* Reutilizando e adaptando a classe .comment-item do seu global.css */
+.comentario-item {
+    padding-bottom: 1rem;
+}
+
+.comentario-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.comentario-item blockquote {
+    margin: 0 0 1rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-red);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-white);
+    font-style: italic;
+}
+
+.comentario-item .comentario-footer {
+    font-size: 0.8rem;
+    color: var(--color-gray);
+}
+
+.comentario-item .comentario-footer a {
+    color: var(--color-light-gray);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.comentario-item .comentario-footer a:hover {
+    color: var(--color-red);
+}
+
+.comentario-item .actions-cell {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
